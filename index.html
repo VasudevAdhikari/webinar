@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="bg-gray-100">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-gray-900 text-white p-5">
+        <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+        <nav>
+          <ul>
+            <li class="mb-4">
+              <a href="#" class="block py-2 px-4 hover:bg-gray-700">Home</a>
+            </li>
+            <li class="mb-4">
+              <a href="#" class="block py-2 px-4 hover:bg-gray-700"
+                >Employees</a
+              >
+            </li>
+            <li class="mb-4">
+              <a href="#" class="block py-2 px-4 hover:bg-gray-700">Reports</a>
+            </li>
+            <li class="mb-4">
+              <a href="#" class="block py-2 px-4 hover:bg-gray-700">Settings</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 p-6 overflow-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Pie Chart -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Employee Distribution</h2>
+            <canvas id="pieChart"></canvas>
+          </div>
+
+          <!-- Line Chart -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Performance Trend</h2>
+            <canvas id="lineChart"></canvas>
+          </div>
+
+          <!-- Bar Chart -->
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Monthly Revenue</h2>
+            <canvas id="barChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Employee Data -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+          <h2 class="text-xl font-semibold mb-4">Employees</h2>
+          <table class="w-full border-collapse border border-gray-300">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border p-2">ID</th>
+                <th class="border p-2">Name</th>
+                <th class="border p-2">Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border p-2">1</td>
+                <td class="border p-2">John Doe</td>
+                <td class="border p-2">Manager</td>
+              </tr>
+              <tr>
+                <td class="border p-2">2</td>
+                <td class="border p-2">Jane Smith</td>
+                <td class="border p-2">Developer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Admin Profile -->
+        <div class="bg-white p-6 rounded-lg shadow-lg mt-6">
+          <h2 class="text-xl font-semibold mb-4">Admin Profile</h2>
+          <p><strong>Name:</strong> Alex Johnson</p>
+          <p><strong>Email:</strong> admin@example.com</p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const ctx1 = document.getElementById("pieChart").getContext("2d");
+      new Chart(ctx1, {
+        type: "pie",
+        data: {
+          labels: ["HR", "Engineering", "Marketing"],
+          datasets: [
+            {
+              data: [10, 20, 5],
+              backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+            },
+          ],
+        },
+      });
+
+      const ctx2 = document.getElementById("lineChart").getContext("2d");
+      new Chart(ctx2, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+          datasets: [
+            {
+              label: "Performance",
+              data: [3, 7, 4, 8, 6],
+              borderColor: "#36A2EB",
+              fill: false,
+            },
+          ],
+        },
+      });
+
+      const ctx3 = document.getElementById("barChart").getContext("2d");
+      new Chart(ctx3, {
+        type: "bar",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+          datasets: [
+            {
+              label: "Revenue",
+              data: [5000, 7000, 8000, 6000, 9000],
+              backgroundColor: "#4CAF50",
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
